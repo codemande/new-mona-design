@@ -1,0 +1,215 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================
+   Mona Protect — Design Tokens
+   Single source of truth for colors, gradients, type, space.
+   ========================================================= */
+:root {
+  /* Brand colors */
+  --color-primary: #004AAD;
+  --color-navy: #0A165E;
+  --color-navy-deep: #021B79;
+  --color-ink: #212121;
+  --color-text: #333333;
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #F9FAFB;
+  --color-bg-blue: #E6ECF8;
+  --color-bg-footer-icon: #F6F5FF;
+  --color-cyan: #38B6FF;
+  --color-star: #FACC15;
+  --color-success: #16A34A;
+  --color-danger: #DC2626;
+  --color-border: #E5E7EB;
+
+  /* Signature gradients */
+  --gradient-brand: linear-gradient(102.14deg, #00B9FF 19.83%, #004CB3 78.45%, #001C7E 145.81%);
+  --gradient-hero: linear-gradient(239.72deg, #38B6FF 1.16%, #004AAD 76.01%, #021B79 129.05%);
+
+  /* Typography */
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.75rem;
+
+  /* Shape & elevation */
+  --radius-none: 0;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --container-max: 1200px;
+
+  /* Shadcn compatibility (kept minimal, mapped to brand) */
+  --radius: 0;
+  --background: var(--color-bg);
+  --foreground: var(--color-ink);
+  --card: var(--color-bg);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-bg);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-bg-blue);
+  --secondary-foreground: var(--color-navy);
+  --muted: var(--color-bg-soft);
+  --muted-foreground: #6B7280;
+  --accent: var(--color-bg-blue);
+  --accent-foreground: var(--color-navy);
+  --destructive: var(--color-danger);
+  --destructive-foreground: #ffffff;
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  a { color: inherit; }
+}
+
+/* Utility classes for brand surfaces */
+@layer components {
+  .mona-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+  .mona-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: 14px 22px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-base);
+    line-height: 1;
+    border-radius: var(--radius-none);
+    transition: transform 150ms ease, filter 150ms ease, background 150ms ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  .mona-btn-primary {
+    background: var(--gradient-brand);
+    color: #fff;
+  }
+  .mona-btn-primary:hover { filter: brightness(1.05); }
+  .mona-btn-secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-ink);
+  }
+  .mona-btn-secondary:hover { background: var(--color-bg-blue); }
+  .mona-btn-wa {
+    background: var(--color-success);
+    color: #fff;
+  }
+  .mona-btn-ghost {
+    background: transparent;
+    color: var(--color-primary);
+    text-decoration: underline;
+    padding: 0;
+  }
+  .mona-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-sm);
+  }
+  .mona-section {
+    padding-block: var(--space-24);
+  }
+  .mona-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  .mona-gradient-text {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
